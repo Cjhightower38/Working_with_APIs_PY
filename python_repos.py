@@ -14,6 +14,19 @@ print('Status code:', r.status_code)
 # Store API response in a variable.
 response_dict = r.json()
 
-# Process results.
-print(response_dict.keys())
+# Print the total count of repositories on GitHub.
+print('Toltal repositories:', response_dict['total_count'])
+
+# Store the list of dictionaries(items) from response_dict into the 
+# repo_dicts variable and print the length of the variable.
+repo_dicts = response_dict['items']
+print('Repositoires returned:', len(repo_dicts))
+
+# Pull the first iteam[0] from repo_dicts storing the result in a 
+# variable and print the length of repo_dict. Iterate through each key 
+# and call the sorted() to sort the results in ascending order.
+repo_dict = repo_dicts[0]
+print('\nKeys:', len(repo_dict))
+for key in sorted(repo_dict.keys()):
+	print(key)
 
