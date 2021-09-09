@@ -23,20 +23,16 @@ repo_dicts = response_dict['items']
 print('Repositoires returned:', len(repo_dicts))
 
 '''
-Pull the first iteam[0] from repo_dicts storing the result in a 
-variable and print the length of repo_dict. After itterating through
-each key the name, owner's name,stars given,the repository, date 
-created, last updated, and the description are printed to the console.
+After itterating through each key in each GitHub project the name,
+owner's name,stars given,the repository,and the description are printed 
+to the console.
 '''
 repo_dict = repo_dicts[0]
-print('\nKeys:', len(repo_dict))
-for key in sorted(repo_dict.keys()):
-	print('\nSelected information about first repository:')
-print('Name:', repo_dict['name'])
-print('Owner:', repo_dict['owner']['login'])
-print('Stars:', repo_dict['stargazers_count'])
-print('Repositry:', repo_dict['html_url'])
-print('Created:', repo_dict['created_at'])
-print('Updated:', repo_dict['updated_at'])
-print('Description:', repo_dict['description'])
+print('\nSelected information about each repository:')
+for repo_dict in repo_dicts:
+	print('\nName:', repo_dict['name'])
+	print('Owner:', repo_dict['owner']['login'])
+	print('Stars:', repo_dict['stargazers_count'])
+	print('Repositry:', repo_dict['html_url'])
+	print('Description:', repo_dict['description'])
 
