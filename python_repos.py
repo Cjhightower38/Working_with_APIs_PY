@@ -22,11 +22,21 @@ print('Toltal repositories:', response_dict['total_count'])
 repo_dicts = response_dict['items']
 print('Repositoires returned:', len(repo_dicts))
 
-# Pull the first iteam[0] from repo_dicts storing the result in a 
-# variable and print the length of repo_dict. Iterate through each key 
-# and call the sorted() to sort the results in ascending order.
+'''
+Pull the first iteam[0] from repo_dicts storing the result in a 
+variable and print the length of repo_dict. After itterating through
+each key the name, owner's name,stars given,the repository, date 
+created, last updated, and the description are printed to the console.
+'''
 repo_dict = repo_dicts[0]
 print('\nKeys:', len(repo_dict))
 for key in sorted(repo_dict.keys()):
-	print(key)
+	print('\nSelected information about first repository:')
+print('Name:', repo_dict['name'])
+print('Owner:', repo_dict['owner']['login'])
+print('Stars:', repo_dict['stargazers_count'])
+print('Repositry:', repo_dict['html_url'])
+print('Created:', repo_dict['created_at'])
+print('Updated:', repo_dict['updated_at'])
+print('Description:', repo_dict['description'])
 
