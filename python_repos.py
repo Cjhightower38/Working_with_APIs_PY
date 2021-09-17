@@ -30,14 +30,27 @@ repo_dicts = response_dict['items']
 print('Repositoires returned:', len(repo_dicts))
 
 '''
-Create two empty dictionaries to store the name and stars given on 
-GitHub. Then iterrate through each item in repo_dicts then append each
-result to the corresponding dictionary.
+Create two empty dictionaries to store the name and plot_dicts given on 
+GitHub. Then iterrate through each item in repo_dicts then appending
+names to it's empty dictionary. Next set a variable to store description
+from each GitHub project and if there is no description avaliable add
+one. Finally add a dictionary to store the stars and description in the
+proper key. Appending the results from plot dict into plot dicts
 '''
-names, stars = [], []
+names, plot_dicts = [], []
 for repo_dict in repo_dicts:
 	names.append(repo_dict['name'])
-	stars.append(repo_dict['stargazers_count'])
+	
+	# Get the project description, if one is avaliable.
+	description = repo_dict['description']
+	if not description:
+		description = 'No description provided.'
+		
+	plot_dict = {
+	    'value': repo_dict['stargazers_count'],
+	    'label': description,
+	    }
+	plot_dicts.append(plot_dict)
 	
 '''
 Used the LS alias and set the shade to dark blue(RGB = 2 digits each 
@@ -72,13 +85,11 @@ chart.title = 'Most-Starred Python Projects on GitHub'
 chart.x_labels = names
 
 '''
-The first attribute is left empty. Since there is no need to lable the
-1 through 5 stars only the stars label is needed for the y-axis. Why?
-The chart is interative so as I move the cursor over a project the stars
-show. The render to a .svg file. Reminder the .svg file can be found in
-file explorer.
+Leaving the first attribute empty as before adding plot dicts into the 
+second arguement. Then rendering to python_repos.svg file. Reminder the 
+.svg file can be found in file explorer.
 '''
 
-chart.add('', stars)
+chart.add('', plot_dicts)
 chart.render_to_file('python_repos.svg')
 
